@@ -21,6 +21,20 @@ def base():
 
     return data
 
+def get_day_one(country):
+    """
+    Gets the data for day one by country
+    """
+    url = "{}dayone/country/{}/status/confirmed".format(base_url, country)
+
+    data = {}
+    req = requests.get(url)
+
+    if req.status_code == 200:
+        data = (json.loads(req.text))
+
+    return data
+
 
 if __name__ == "__main__":
-    print (base())
+    print (get_day_one("canada"))
